@@ -1,15 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// ファイル一覧の取得（現在は空配列をデフォルト）
+const files = [];
 ---
 
 <Layout>
-	<ul>
-		{
-			files.map((f) => (
-				<li>
-					<a href={f.url}>{f.name}</a>({f.created_at})
-				</li>
-			))
-		}
-	</ul>
+	<h1>ファイル一覧</h1>
+	{files.length === 0 ? (
+		<p>ファイルがまだありません。<a href="/upload">ファイルをアップロード</a>してください。</p>
+	) : (
+		<ul>
+			{
+				files.map((f) => (
+					<li>
+						<a href={f.url}>{f.name}</a> ({f.created_at})
+					</li>
+				))
+			}
+		</ul>
+	)}
 </Layout>
